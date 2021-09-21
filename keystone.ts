@@ -3,7 +3,7 @@
 import { config, list } from '@keystone-next/keystone';
 import { text } from '@keystone-next/keystone/fields';
 
-const Post = list({
+const Ebook = list({
   fields: {
     title: text({ isRequired: true }),
     slug: text({ isIndexed: 'unique', isFilterable: true }),
@@ -17,5 +17,5 @@ export default config({
     generateNextGraphqlAPI: true,
     generateNodeAPI: true,
   },
-  lists: { Post },
+  lists: { Ebook },
 });
