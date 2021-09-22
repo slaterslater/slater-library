@@ -15,7 +15,7 @@ export default function Home({
       <main style={{ margin: "3rem" }}>
         <h1>Hello World! 👋🏻 </h1>
         <ul>
-          {ebooks.map(ebook => (
+          {ebooks?.map(ebook => (
             <li key={ebook.id}>
               <Link href={`/post/${ebook.slug}`}>
                 <a>{ebook.title}</a>
