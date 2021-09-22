@@ -8,30 +8,31 @@ import { lists } from '.keystone/api';
 
 // Home receives a `posts` prop from `getStaticProps` below
 export default function Home({
-  posts,
+  ebooks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
-      <main style={{ margin: '3rem' }}>
+      <main style={{ margin: "3rem" }}>
         <h1>Hello World! 👋🏻 </h1>
         <ul>
-          {/* Render each post with a link to the content page */}
-          {posts.map((post) => (
-            <li key={post.id}>
-              <Link href={`/post/${post.slug}`}>
-                <a>{post.title}</a>
+          {ebooks.map(ebook => (
+            <li key={ebook.id}>
+              <Link href={`/post/${ebook.slug}`}>
+                <a>{ebook.title}</a>
               </Link>
             </li>
           ))}
         </ul>
       </main>
     </div>
-  );
+  )
 }
 
 // Here we use the Lists API to load all the posts we want to display
 // The return of this function is provided to the `Home` component
 export async function getStaticProps() {
-  const posts = await lists.Post.findMany({ query: 'id title slug' });
-  return { props: { posts } };
+  // casting list as any to avoid error...
+  // Property 'Ebook' does not exist on type 'KeystoneListsAPI<KeystoneListsTypeInfo>'.ts(2339)
+  const ebooks = await (lists as any).Ebook.findMany({ query: 'id title slug' });
+  return { props: { ebooks } };
 }

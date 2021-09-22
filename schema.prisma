@@ -11,7 +11,7 @@ generator client {
   output   = "node_modules/.prisma/client"
 }
 
-model Post {
+model Ebook {
   id      String  @id @default(cuid())
   title   String?
   slug    String? @unique
